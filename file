@@ -1,0 +1,21 @@
+import math
+
+def factorize_number(n):
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return i, n // i
+    return None, None
+
+def factorize_file(file_path):
+    with open(file_path, 'r') as file:
+        numbers = file.read().splitlines()
+    
+    for number in numbers:
+        n = int(number)
+        p, q = factorize_number(n)
+        if p is not None and q is not None:
+            print(f"{n}={p}*{q}")
+
+if __name__ == "__main__":
+    file_path = input("Enter the file path: ")
+    factorize_file(file_path)
